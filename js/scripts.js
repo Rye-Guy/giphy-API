@@ -12,6 +12,7 @@ function makeButtons(){
         btn.attr('data-search', searches[i]);
         btn.text(searches[i]);
         $('#buttonArea').prepend(btn);
+        $("#textInput").val('');
     }
 }
 
@@ -26,11 +27,12 @@ $("#createButton").on("click", function(){
     makeButtons();
 });
 
-
-$("button").on("click", function(){
+function displayGifs(){
+//$("button").on("click", function(){
     $("#gifArea").empty();
     gifSearch = $(this).attr("data-search");
-
+    console.log(gifSearch);
+    console.log(this);
     var queryURL = "https://api.giphy.com/v1/gifs/search?q="+gifSearch+"&api_key=k7ghyogO0TCLwIKB6SUSY71p7om684u5&limit="+limit;
 
     $.ajax({
@@ -38,7 +40,7 @@ $("button").on("click", function(){
         method: "GET"
     }).then(function(response){
 
-      //  console.log(response);
+       console.log(response);
 
         var result = response.data;
 
@@ -46,15 +48,21 @@ $("button").on("click", function(){
 
         for(var i = 0; i < result.length; i++){
 
+            var defaultSrc =  result[i].images.fixed_height.url;
+            var stillSrc = result[i].images.fixed_height_still.url;
+
+
             var item = $("<div class='item'>");
 
             var rating = result[i].rating;
 
             var newP = $("<p>").text("Picture Rating: " + rating);
 
-            var gifImg = $("<img>");
+            var gifImg = $("<img class='imagesControl'>");
 
-            gifImg.attr("src", result[i].images.original.url);
+            gifImg.attr("src", "still")
+            gifImg.attr("src", stillSrc);
+            gifImg.attr("src", defaultSrc);
 
             item.append(newP);
             item.append(gifImg);
@@ -62,7 +70,26 @@ $("button").on("click", function(){
             $('#gifArea').prepend(item);
             
         }
-
+       
     });
-});
+}
+
+function pausePlayGifs() {
+    var state = $(this).attr("src");
+   if (state === "still") {
+     $(this).attr("src", $(this).attr("data-still"));
+     $(this).attr("data-state", "animate");
+   } else {
+     $(this).attr("src", $(this).attr("data-animate"));
+     $(this).attr("data-state", "still");
+    }
+}
+
+
+$(document).on("click", ".imagesControl", pausePlayGifs);
+
+
+$(document).on("click", ".searchButton", displayGifs);
+//displayGifs();
+makeButtons();
 
