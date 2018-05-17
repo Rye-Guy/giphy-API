@@ -1,0 +1,9 @@
+img:hover{
+    cursor: pointer;
+}
+
+#gifArea{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}

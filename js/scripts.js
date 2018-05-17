@@ -12,7 +12,10 @@ function makeButtons(){
         btn.attr('data-search', searches[i]);
         btn.text(searches[i]);
         $('#buttonArea').prepend(btn);
-        $("#textInput").val('');
+   
+        text = $("#textInput").val('');
+        text; 
+        console.log(text);
     }
 }
 
@@ -59,6 +62,7 @@ function displayGifs(){
             console.log(rating);
             if(rating == 'r' || rating == 'pg-13'){
                  item.remove();
+                 
                  console.log("I'm saving your virigin eyes")
             }else{
 
