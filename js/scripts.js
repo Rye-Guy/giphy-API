@@ -7,7 +7,7 @@ function makeButtons(){
     $("#buttonArea").empty();
 
     for(var i = 0; i < searches.length; i++){
-        var btn = $("<button>");
+        var btn = $("<button class='btn'>");
         btn.addClass('searchButton');
         btn.attr('data-search', searches[i]);
         btn.text(searches[i]);
@@ -62,8 +62,7 @@ function displayGifs(){
             console.log(rating);
             if(rating == 'r' || rating == 'pg-13'){
                  item.remove();
-                 
-                 console.log("I'm saving your virigin eyes")
+                 console.log("I'm saving your virigin eyes");
             }else{
 
             var newP = $("<p>").text("Picture Rating: " + rating);
@@ -103,16 +102,16 @@ function displayGifs(){
 //displayGifs();
 makeButtons();
 
-$("#numberOfGifs").text(limit);
-$("#up").on("click", function(){
+    $("#numberOfGifs").text(limit);
+    $("#up").on("click", function(){
 
-    limit++;
-    $("#numberOfGifs").text(limit);    
-});
-$("#down").on("click", function(){
+        limit++;
+        $("#numberOfGifs").text(limit);    
+    });
+    $("#down").on("click", function(){
 
-    limit--;
-    $("#numberOfGifs").text(limit);    
-});
+        limit--;
+        $("#numberOfGifs").text(limit);    
+    });
 
 
