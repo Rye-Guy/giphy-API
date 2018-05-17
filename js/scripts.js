@@ -36,7 +36,7 @@ function displayGifs(){
     gifSearch = $(this).attr("data-search");
     console.log(gifSearch);
     console.log(this);
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q="+gifSearch+"&api_key=k7ghyogO0TCLwIKB6SUSY71p7om684u5&limit="+limit;
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q="+gifSearch+"&api_key=k7ghyogO0TCLwIKB6SUSY71p7om684u5&limit="+limit+"&rating=pg-13";
 
     
     $.ajax({
@@ -60,10 +60,11 @@ function displayGifs(){
 
             var rating = result[i].rating;
             console.log(rating);
-            if(rating == 'r' || rating == 'pg-13'){
-                 item.remove();
-                 console.log("I'm saving your virigin eyes");
-            }else{
+          //  if(rating == 'r' || rating == 'pg-13'){
+           //      item.remove();
+           //      console.log("I'm saving your virigin eyes");
+            
+        //    }else{
 
             var newP = $("<p>").text("Picture Rating: " + rating);
 
@@ -77,7 +78,7 @@ function displayGifs(){
             item.append(gifImg);
 
             $('#gifArea').prepend(item);
-            }
+           // }
 
         }
        // $(document).on("click", ".imagesControl", pausePlayGifs);
