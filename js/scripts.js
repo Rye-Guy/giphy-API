@@ -1,6 +1,6 @@
 // api key k7ghyogO0TCLwIKB6SUSY71p7om684u5
 var limit = 10; 
-var searches = ["Baseball", "Hockey", "Pinball", "Fire", "Rainbow"];
+var searches = ["Baseball", "Hockey", "Pinball", "Fire", "Rainbow", "Waterfall"];
 
 
 function makeButtons(){
